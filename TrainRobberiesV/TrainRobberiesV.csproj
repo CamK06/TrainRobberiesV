@@ -32,6 +32,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="ScriptHookVDotNet2, Version=2.10.12.0, Culture=neutral, processorArchitecture=AMD64">
       <HintPath>..\packages\ScriptHookVDotNet2.2.10.12\lib\net48\ScriptHookVDotNet2.dll</HintPath>
     </Reference>
@@ -44,10 +47,15 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
+    <Reference Include="Universal Inventory System">
+      <HintPath>..\..\Universal-Inventory-System\UIS\bin\Release\Universal Inventory System.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FreightCar.cs" />
     <Compile Include="Main.cs" />
+    <Compile Include="Mod.cs" />
+    <Compile Include="ModConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
