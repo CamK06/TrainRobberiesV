@@ -25,7 +25,7 @@ namespace TrainRobberiesV
             Mod.VerifyFiles();
             config = LoadConfig();
             Tick += OnTick;
-            UI.Notify("Train Robberies V started successfully!");
+            UI.Notify("~y~Train Robberies V ~w~started successfully!");
         }
 
         private void OnTick(object sender, EventArgs e)
@@ -62,8 +62,10 @@ namespace TrainRobberiesV
         {
             robbedCars.Add(train);
             Random r = new Random();
-            int money = r.Next(2500, 25000);
-            Game.Player.Money += money;
+
+            var item = config.items[r.Next(0, config.items.Count)];
+            UI.Notify($"Train looted: {item.itemName} (${item.itemValue})");
+            Game.Player.Money += item.itemValue; // TODO: Replace this with Universal Inventory System stuff
         }
 
         private ModConfig LoadConfig()

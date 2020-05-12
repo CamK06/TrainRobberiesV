@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.IO;
+using UniversalInventorySystem.Classes;
 
 namespace TrainRobberiesV
 {
@@ -19,6 +20,29 @@ namespace TrainRobberiesV
                         {
                             modelName = "freightcont1",
                             radius = 2.5f
+                        }
+                    },
+                    items = new List<Item>()
+                    {
+                        new Item
+                        {
+                            itemName = "Shipment of electronics",
+                            itemValue = 5000
+                        },
+                        new Item
+                        {
+                            itemName = "Shipment of jewelry",
+                            itemValue = 15000
+                        },
+                        new Item
+                        {
+                            itemName = "Food shipment",
+                            itemValue = 0
+                        },
+                        new Item
+                        {
+                            itemName = "Weapons shipment",
+                            itemValue = 1500
                         }
                     }
                 };
