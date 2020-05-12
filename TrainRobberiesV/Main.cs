@@ -36,11 +36,11 @@ namespace TrainRobberiesV
             {
                 FreightCar car = null;
                 foreach (FreightCar fc in config.cars) if (new Model(fc.modelName) == veh.Model) car = fc;
-                if (car != null && !robbedCars.Contains(veh))
+                if (car != null && !robbedCars.Contains(veh) && veh.IsAlive)
                 {
-                    if (veh.HasBone("bogie_r"))
+                    if (veh.HasBone(car.bone))
                     {
-                        Vector3 rearPos = veh.GetBoneCoord(veh.GetBoneIndex("bogie_r"));
+                        Vector3 rearPos = veh.GetBoneCoord(veh.GetBoneIndex(car.bone));
                         if (World.GetDistance(rearPos, Game.Player.Character.Position) <= car.radius)
                         {
                             // The player can rob the train
@@ -48,6 +48,7 @@ namespace TrainRobberiesV
 
                             if (Game.IsControlJustPressed(0, GTA.Control.Talk))
                             {
+                                // Fading effect when robbing
                                 Game.FadeScreenOut(1500);
                                 Wait(3000);
                                 SearchTrain(veh);
@@ -64,15 +65,15 @@ namespace TrainRobberiesV
             robbedCars.Add(train);
             Random r = new Random();
 
+            // Get a random item and give it to the user
             var item = config.items[r.Next(0, config.items.Count)];
             UI.Notify($"Train looted: {item.itemName} (${item.itemValue})");
             Game.Player.Money += item.itemValue; // TODO: Replace this with Universal Inventory System stuff
-            config.items.Add(new PawnItem());
         }
 
         private ModConfig LoadConfig()
         {
-            // Read an deserialze the mod configuration
+            // Read and deserialze the mod configuration
             string json = File.ReadAllText("scripts\\TrainRobberiesV.json");
             return JsonConvert.DeserializeObject<ModConfig>(json, new JsonSerializerSettings
             {

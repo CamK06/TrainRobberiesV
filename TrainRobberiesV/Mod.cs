@@ -1,7 +1,6 @@
 ﻿using Newtonsoft.Json;
-using System.Collections.Generic;
 using System.IO;
-using UniversalInventorySystem.Classes;
+using TrainRobberiesV.Items;
 
 namespace TrainRobberiesV
 {
@@ -14,37 +13,8 @@ namespace TrainRobberiesV
                 ModConfig newConfig = new ModConfig()
                 {
                     debugMode = false,
-                    cars = new List<FreightCar>()
-                    {
-                        new FreightCar()
-                        {
-                            modelName = "freightcont1",
-                            radius = 2.5f
-                        }
-                    },
-                    items = new List<Item>()
-                    {
-                        new Item
-                        {
-                            itemName = "Shipment of electronics",
-                            itemValue = 5000
-                        },
-                        new Item
-                        {
-                            itemName = "Shipment of jewelry",
-                            itemValue = 15000
-                        },
-                        new Item
-                        {
-                            itemName = "Food shipment",
-                            itemValue = 0
-                        },
-                        new Item
-                        {
-                            itemName = "Weapons shipment",
-                            itemValue = 1500
-                        }
-                    }
+                    cars = Defaults.defaultCars,
+                    items = Defaults.defaultItems
                 };
                 string json = JsonConvert.SerializeObject(newConfig, Formatting.Indented, new JsonSerializerSettings
                 {
