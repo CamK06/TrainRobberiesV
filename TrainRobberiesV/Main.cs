@@ -14,8 +14,7 @@ namespace TrainRobberiesV
     {
         private FreightCar car = new FreightCar() // Create a new FreightCar object to store the one lootable car type. This will be replaced by the dictionary below in the first actual release
         {
-            //modelName = "freightcont1",
-            modelName = "tankercar",
+            modelName = "freightcont1",
             radius = 2.5f
         };
         //private Dictionary<Model, FreightCar> cars = new Dictionary<Model, FreightCar>(); // This will likely be used once json loading is implemented to store the FreightCars for the rest of the script to use
@@ -42,7 +41,7 @@ namespace TrainRobberiesV
                     if (World.GetDistance(rearPos, Game.Player.Character.Position) <= car.radius)
                     {
                         // The player can rob the train
-                        UI.ShowHelpMessage("Hold ~y~E ~w~to rob the train", 1, true);
+                        UI.ShowHelpMessage("Press ~y~E ~w~to rob the train", 1, true);
 
                         if(Game.IsControlJustPressed(0, GTA.Control.Talk))
                         {
