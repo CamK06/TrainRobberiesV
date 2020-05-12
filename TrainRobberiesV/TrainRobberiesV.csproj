@@ -53,6 +53,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FreightCar.cs" />
+    <Compile Include="Items\AmmoItem.cs" />
+    <Compile Include="Items\Defaults.cs" />
+    <Compile Include="Items\ItemType.cs" />
+    <Compile Include="Items\JunkItem.cs" />
+    <Compile Include="Items\PawnItem.cs" />
+    <Compile Include="Items\WeaponItem.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="Mod.cs" />
     <Compile Include="ModConfig.cs" />

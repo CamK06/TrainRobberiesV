@@ -10,6 +10,7 @@ using GTA;
 using GTA.Math;
 using GTA.Native;
 using Newtonsoft.Json;
+using TrainRobberiesV.Items;
 using UniversalInventorySystem;
 
 namespace TrainRobberiesV
@@ -66,13 +67,17 @@ namespace TrainRobberiesV
             var item = config.items[r.Next(0, config.items.Count)];
             UI.Notify($"Train looted: {item.itemName} (${item.itemValue})");
             Game.Player.Money += item.itemValue; // TODO: Replace this with Universal Inventory System stuff
+            config.items.Add(new PawnItem());
         }
 
         private ModConfig LoadConfig()
         {
             // Read an deserialze the mod configuration
             string json = File.ReadAllText("scripts\\TrainRobberiesV.json");
-            return JsonConvert.DeserializeObject<ModConfig>(json);
+            return JsonConvert.DeserializeObject<ModConfig>(json, new JsonSerializerSettings
+            {
+                TypeNameHandling = TypeNameHandling.All
+            });
         }
     }
 }

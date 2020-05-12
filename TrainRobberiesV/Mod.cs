@@ -46,7 +46,10 @@ namespace TrainRobberiesV
                         }
                     }
                 };
-                string json = JsonConvert.SerializeObject(newConfig, Formatting.Indented);
+                string json = JsonConvert.SerializeObject(newConfig, Formatting.Indented, new JsonSerializerSettings
+                {
+                    TypeNameHandling = TypeNameHandling.All
+                });
                 File.WriteAllText("scripts\\TrainRobberiesV.json", json);
             }
         }
