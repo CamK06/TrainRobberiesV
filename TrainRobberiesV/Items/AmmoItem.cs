@@ -1,8 +1,6 @@
-﻿using UniversalInventorySystem.Classes;
-
-namespace TrainRobberiesV.Items
+﻿namespace TrainRobberiesV.Items
 {
-    internal class AmmoItem : Item
+    internal class AmmoItem
     {
         // TODO
         public ItemType type = ItemType.Ammo;

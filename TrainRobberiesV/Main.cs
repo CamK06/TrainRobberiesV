@@ -11,7 +11,6 @@ using GTA.Math;
 using GTA.Native;
 using Newtonsoft.Json;
 using TrainRobberiesV.Items;
-using UniversalInventorySystem;
 
 namespace TrainRobberiesV
 {
@@ -31,28 +30,31 @@ namespace TrainRobberiesV
 
         private void OnTick(object sender, EventArgs e)
         {
-            Vehicle[] vehicles = World.GetNearbyVehicles(Game.Player.Character, 25.5f);
-            foreach(Vehicle veh in vehicles)
+            if (!Game.Player.Character.IsInVehicle())
             {
-                FreightCar car = null;
-                foreach (FreightCar fc in config.cars) if (new Model(fc.modelName) == veh.Model) car = fc;
-                if (car != null && !robbedCars.Contains(veh) && veh.IsAlive)
+                Vehicle[] vehicles = World.GetNearbyVehicles(Game.Player.Character, 25.5f);
+                foreach (Vehicle veh in vehicles)
                 {
-                    if (veh.HasBone(car.bone))
+                    FreightCar car = null;
+                    foreach (FreightCar fc in config.cars) if (new Model(fc.modelName) == veh.Model) car = fc;
+                    if (car != null && !robbedCars.Contains(veh) /*&& veh.IsAlive*/)
                     {
-                        Vector3 rearPos = veh.GetBoneCoord(veh.GetBoneIndex(car.bone));
-                        if (World.GetDistance(rearPos, Game.Player.Character.Position) <= car.radius)
+                        if (veh.HasBone(car.bone))
                         {
-                            // The player can rob the train
-                            UI.ShowHelpMessage("Press ~y~E ~w~to rob the train", 1, true);
-
-                            if (Game.IsControlJustPressed(0, GTA.Control.Talk))
+                            Vector3 rearPos = veh.GetBoneCoord(veh.GetBoneIndex(car.bone));
+                            if (World.GetDistance(rearPos, Game.Player.Character.Position) <= car.radius)
                             {
-                                // Fading effect when robbing
-                                Game.FadeScreenOut(1500);
-                                Wait(3000);
-                                SearchTrain(veh);
-                                Game.FadeScreenIn(1500);
+                                // The player can rob the train
+                                UI.ShowHelpMessage("Press ~y~E ~w~to rob the train", 1, true);
+
+                                if (Game.IsControlJustPressed(0, GTA.Control.Talk))
+                                {
+                                    // Fading effect when robbing
+                                    Game.FadeScreenOut(1500);
+                                    Wait(3000);
+                                    SearchTrain(veh);
+                                    Game.FadeScreenIn(1500);
+                                }
                             }
                         }
                     }
@@ -62,15 +64,33 @@ namespace TrainRobberiesV
 
         private void SearchTrain(Vehicle train)
         {
-            robbedCars.Add(train);
-            Random r = new Random();
+            try
+            {
+                robbedCars.Add(train);
+                Random r = new Random();
+                string lootText = "";
 
-            // Get a random item and give it to the user
-            var item = config.items[r.Next(0, config.items.Count)];
-            UI.Notify($"Train looted: {item.itemName} (${item.itemValue})");
-            Game.Player.Money += item.itemValue; // TODO: Replace this with Universal Inventory System stuff
+                // Get a random item and give it to the user if it's worth anything
+                var item = config.items[r.Next(0, config.items.Count)];
+
+                // Determine what the lootText should be
+                if (((PawnItem)item).type == ItemType.Pawn) lootText = $"{item.itemName} (${item.itemValue})";
+                else lootText = item.itemName;
+
+                UI.Notify($"Train looted: {lootText}");
+                if (item.itemValue > 0)
+                {
+                    // Give the user the item
+                    // TODO: IMPLEMENT
+                }
+            }
+            catch(Exception ex)
+            {
+                UI.Notify("Search failed!");
+                Mod.Log($"Failed Search: \n{ex.Message}\n{ex.StackTrace}\n{ex.Source}\n{ex.StackTrace}\n\n\n\n\n");
+            }
+            
         }
-
         private ModConfig LoadConfig()
         {
             // Read and deserialze the mod configuration

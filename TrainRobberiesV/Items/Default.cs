@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
-using UniversalInventorySystem.Classes;
 
 namespace TrainRobberiesV.Items
 {
-    internal class Defaults
+    internal class Default
     {
         public static List<Item> defaultItems = new List<Item>()
         {

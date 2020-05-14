@@ -13,8 +13,8 @@ namespace TrainRobberiesV
                 ModConfig newConfig = new ModConfig()
                 {
                     debugMode = false,
-                    cars = Defaults.defaultCars,
-                    items = Defaults.defaultItems
+                    cars = Default.defaultCars,
+                    items = Default.defaultItems
                 };
                 string json = JsonConvert.SerializeObject(newConfig, Formatting.Indented, new JsonSerializerSettings
                 {
