@@ -40,6 +40,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -49,16 +50,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FreightCar.cs" />
-    <Compile Include="Items\AmmoItem.cs" />
-    <Compile Include="Items\Default.cs" />
-    <Compile Include="Items\ItemType.cs" />
-    <Compile Include="Items\JunkItem.cs" />
-    <Compile Include="Items\PawnItem.cs" />
-    <Compile Include="Items\WeaponItem.cs" />
+    <Compile Include="Utils\Classes\Fence.cs" />
+    <Compile Include="Utils\Classes\FreightCar.cs" />
+    <Compile Include="Utils\Classes\Inventory.cs" />
+    <Compile Include="Utils\Defaults.cs" />
+    <Compile Include="Utils\InventoryManager.cs" />
+    <Compile Include="Utils\Classes\Items\Item.cs" />
     <Compile Include="Main.cs" />
-    <Compile Include="Mod.cs" />
-    <Compile Include="ModConfig.cs" />
+    <Compile Include="Utils\Mod.cs" />
+    <Compile Include="Utils\ModConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
