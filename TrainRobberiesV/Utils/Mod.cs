@@ -24,10 +24,10 @@ namespace TrainRobberiesV
                     items = Defaults.defaultItems,
                     fences = Defaults.defaultFences
                 };
-                string json = JsonConvert.SerializeObject(newConfig, Formatting.Indented, new JsonSerializerSettings
+                string json = JsonConvert.SerializeObject(newConfig, Formatting.Indented/*, new JsonSerializerSettings
                 {
                     TypeNameHandling = TypeNameHandling.All
-                });
+                }*/);
                 File.WriteAllText("scripts\\TrainRobberiesV.json", json);
             }
             if (!File.Exists("scripts\\TrainRobbery-Inventories.json"))

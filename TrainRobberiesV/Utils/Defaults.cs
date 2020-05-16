@@ -30,6 +30,26 @@ namespace TrainRobberiesV
                 name = "Weapons shipment",
                 value = 1500,
                 //type = ItemType.Pawn
+            },
+            new Items.Item
+            {
+                name = "E-Waste",
+                value = 2500
+            },
+            new Items.Item
+            {
+                name = "Garbage",
+                value = 0
+            },
+            new Items.Item
+            {
+                name = "Antiques",
+                value = 500
+            },
+            new Items.Item
+            {
+                name = "Gold",
+                value = 25000
             }
         };
 

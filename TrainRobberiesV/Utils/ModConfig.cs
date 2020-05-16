@@ -5,6 +5,7 @@ namespace TrainRobberiesV
 {
     internal class ModConfig
     {
+        public int modVersion { get; set; } = 0021;
         public bool draw3dMarkers { get; set; } = true;
         public bool debugMode { get; set; }
         public List<Items.Item> items { get; set; }
